@@ -1,4 +1,0 @@
-.env
-senv/
-__pycache__/
-stroke_model.pkl
