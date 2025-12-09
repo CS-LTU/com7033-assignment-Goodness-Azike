@@ -94,7 +94,7 @@ High-level design.
 
 ## Folder structure
 
-```text
+
 Stroke-Website-Project/
 ├── backend/
 │   ├── alembic/
@@ -177,3 +177,18 @@ Update this list with exact versions used in `requirements.txt`.
 - Python installed  
 - MySQL server available  
 - MongoDB running locally or in the cloud  
+
+### Backend setup
+
+1. Open a terminal in the `backend` folder.  
+2. Create and activate a virtual environment.  
+3. Install dependencies with `pip install -r requirements.txt`.  
+4. Create a `.env` file from `.env.example` and fill in your values.  
+5. Initialise and seed the database using your helper scripts.  
+6. Start the backend with `python server.py`.  
+
+### Frontend setup
+
+1. Open the `frontend` folder.  
+2. Open `index.html` in a browser, or run a simple local server (for example `python -m http.server 8000`) and go to `http://localhost:8000/index.html`.  
+
