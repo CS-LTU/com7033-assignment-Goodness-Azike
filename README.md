@@ -1,4 +1,4 @@
-# Stroke-Website-Project
+# Stroke-Website-Assignment-COM7033
 
 Secure web application for stroke risk prediction and simple patient data management. The system supports authenticated users, a dashboard for key information, and a prediction page powered by a machine learning model.
 
@@ -36,68 +36,97 @@ The project belongs to the Secure Software Development module (COM7033) for the 
 
 ## Key features
 
-- **User authentication**  
-  - Signup and login  
-  - Hashed passwords  
-  - Token or session based access control  
+- **User authentication and authorisation**  
+  - User signup and signin with email and password  
+  - Passwords hashed before being stored in the database  
+  - JSON Web Token (JWT) based authentication to protect APIs and pages  
+
+- **Stroke data management**  
+  - CSV seed scripts (`dataset.csv`, `preprocessed_data.csv`, `seed_data.py`, `init_database.py`) to load and prepare stroke data  
+  - Separate preprocessing logic in `preprocess.py` and `stroke_data_service.py`  
 
 - **Dashboard**  
-  - Summary of recent patients or test cases  
-  - Overview of recent predictions  
-  - Key metrics for the model or system  
+  - HTML dashboard page with linked JavaScript (`dashboard.html`, `dashboard.js`)  
+  - Fetches summary data from the backend (for example counts and basic metrics)  
+  - Uses the same protected API as the rest of the application  
 
 - **Prediction page**  
-  - Form for clinical and lifestyle features  
-  - Submission to backend API  
-  - Display of predicted stroke risk  
+  - Frontend form for clinical and lifestyle features (`prediction.html`, `prediction.js`)  
+  - Sends data to a dedicated prediction endpoint in the backend  
+  - Backend calls the ML model (`model.py`) and returns stroke risk to the UI  
 
-- **Privacy policy page**  
-  - Short statement on data use  
-  - Reference to confidentiality and secure handling of health data  
-
-- **Logging and error handling**  
-  - Server side logging for key events  
-  - Graceful error messages for users  
+- **Security and configuration**  
+  - Environment-based configuration using `.env.example`  
+  - JWT utilities in `jwt_auth.py`  
+  - Alembic migrations to keep the database schema in sync  
 
 ## System architecture
 
 High level design:
 
 - **Frontend**  
-  - Web interface for patients or clinicians  
-  - Communicates with backend over HTTP using JSON  
+  - Static HTML pages for signup, signin, dashboard and prediction  
+  - JavaScript files handle form submissions and `fetch` calls to the backend API (`api-config.js`, `script.js`, `dashboard.js`, `prediction.js`)  
+  - `styles.css` for layout and styling  
 
 - **Backend**  
-  - Python web framework (for example Flask or FastAPI)  
-  - REST style API endpoints for authentication, dashboard data, and predictions  
-  - Business logic layer separate from routes  
+  - Python application started from `server.py`  
+  - Controller layer in `backend/controller/` (`auth.py`, `dashboard.py`, `prediction.py`, `model.py`, `preprocess.py`, `stroke_data_service.py`)  
+  - JWT-based auth handled in `jwt_auth.py`  
+  - Database connections and migrations configured via `alembic/`, `alembic.ini` and the `database` package  
 
 - **Databases**  
-  - Relational database (for example SQLite or MySQL) for structured data such as users and patient records  
-  - MongoDB for additional logging or audit trail data  
+  - Relational database (MySQL) for users and stroke-related records, accessed through the database layer  
+  - MongoDB used alongside MySQL for non-relational data and logging (via a separate Mongo client module)  
 
 - **Machine learning model**  
-  - Trained stroke risk model stored on disk  
-  - Loaded by the backend and used inside prediction endpoints  
+  - Trained stroke risk model and supporting artefacts stored in the backend  
+  - Loaded in `model.py` and used by the prediction controller  
+  - Model performance notes stored in `model_metrics.txt` for reference 
 
 ## Folder structure
 
 ```text
-COM7033-ASSIGNMENT/
+Stroke-Website-Project/
 ├── backend/
-│   ├── app.py
-│   ├── routes/
-│   ├── services/
-│   ├── models/
-│   ├── security/
+│   ├── alembic/
+│   │   ├── versions/
+│   │   ├── README
+│   │   ├── env.py
+│   │   └── script.py.mako
+│   ├── controller/
+│   │   ├── __init__.py
+│   │   ├── auth.py
+│   │   ├── dashboard.py
+│   │   ├── jwt_auth.py
+│   │   ├── model.py
+│   │   ├── prediction.py
+│   │   ├── preprocess.py
+│   │   └── stroke_data_service.py
 │   ├── database/
-│   └── tests/
+│   ├── .env.example
+│   ├── alembic.ini
+│   ├── dataset.csv
+│   ├── docs.json
+│   ├── init_database.py
+│   ├── model_metrics.txt
+│   ├── preprocessed_data.csv
+│   ├── requirements.txt
+│   ├── seed_data.py
+│   └── server.py
 ├── frontend/
-│   ├── public/
-│   └── src/
-│       ├── components/
-│       ├── pages/
-│       ├── services/
-│       └── styles/
-├── requirements.txt
+│   ├── README.md
+│   ├── api-config.js
+│   ├── dashboard.html
+│   ├── dashboard.js
+│   ├── index.html
+│   ├── prediction.html
+│   ├── prediction.js
+│   ├── requirements.txt
+│   ├── script.js
+│   ├── signin.html
+│   ├── signup.html
+│   ├── styles.css
+│   └── .gitignore
+├── .gitignore
 └── README.md
