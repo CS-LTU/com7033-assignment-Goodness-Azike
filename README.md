@@ -130,3 +130,49 @@ Stroke-Website-Project/
 │   └── .gitignore
 ├── .gitignore
 └── README.md
+
+## Folder structure (summary)
+
+**backend**
+
+- `server.py` entry point for the web server  
+- `controller/` request handlers for auth, dashboard, prediction, preprocessing, data service and JWT  
+- `database/` database setup and helpers  
+- `alembic/` and `alembic.ini` for database migrations  
+- Data and config files such as `dataset.csv`, `preprocessed_data.csv`, `seed_data.py`, `init_database.py`, `model_metrics.txt`, `docs.json`  
+- `.env.example` template for environment variables  
+- `requirements.txt` Python dependencies for the backend  
+
+**frontend**
+
+- `index.html`, `signin.html`, `signup.html`, `dashboard.html`, `prediction.html` main pages  
+- `script.js`, `dashboard.js`, `prediction.js` page logic and API calls  
+- `api-config.js` API base URL and shared settings  
+- `styles.css` styling for all pages  
+- `requirements.txt` notes or extra tools for the frontend  
+
+---
+
+## Tech stack
+
+- Python  
+- Web framework in `server.py` (for example Flask or FastAPI)  
+- MySQL as the main relational database  
+- Alembic for schema migrations  
+- MongoDB for non relational data and logging  
+- Machine learning with a Python library such as scikit-learn  
+- HTML, CSS and vanilla JavaScript on the frontend  
+- JSON Web Tokens (JWT) for authentication  
+
+Update this list with exact versions used in `requirements.txt`.
+
+---
+
+## Getting started
+
+### Prerequisites
+
+- Python installed  
+- MySQL server available  
+- MongoDB running locally or in the cloud  
+
