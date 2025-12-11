@@ -93,8 +93,9 @@ High-level design.
 - Model performance notes stored in `model_metrics.txt` for reference  
 
 ## Folder structure
+## Folder structure
 
-
+```text
 Stroke-Website-Project/
 ├── backend/
 │   ├── alembic/
@@ -123,14 +124,12 @@ Stroke-Website-Project/
 │   ├── seed_data.py
 │   └── server.py
 ├── frontend/
-│   ├── README.md
 │   ├── api-config.js
 │   ├── dashboard.html
 │   ├── dashboard.js
 │   ├── index.html
 │   ├── prediction.html
 │   ├── prediction.js
-│   ├── requirements.txt
 │   ├── script.js
 │   ├── signin.html
 │   ├── signup.html
@@ -138,6 +137,8 @@ Stroke-Website-Project/
 │   └── .gitignore
 ├── .gitignore
 └── README.md
+```
+
 
 ## Backend
 
