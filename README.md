@@ -191,5 +191,78 @@ Update this list with exact versions used in `requirements.txt`.
 ### Frontend setup
 
 1. Open the `frontend` folder.  
-2. Open `index.html` in a browser, or run a simple local server (for example `python -m http.server 8000`) and go to `http://localhost:8000/index.html`.  
+2. Open `index.html` in a browser, or run a simple local server (for example `python -m http.server 8000`) and go to `http://localhost:8000/index.html`.
+
+## Environment variables
+
+The backend reads configuration from a `.env` file in the `backend` folder.  
+Use `.env.example` as a template and create your own `.env` with real values.
+
+Typical variables:
+
+- `SECRET_KEY` – secret key for signing tokens and sessions  
+- `MYSQL_URL` – MySQL connection string (host, port, database, user, password)  
+- `MONGODB_URI` – MongoDB connection string  
+- `ACCESS_TOKEN_EXPIRE_MINUTES` – lifetime of JWT access tokens in minutes  
+- `ENV` or `DEBUG` – flag to switch between development and production modes  
+
+Do **not** commit your real `.env` file to Git; it is already ignored by `.gitignore`.
+
+## Usage guide
+
+1. Start the backend in the `backend` folder with `python server.py`.  
+2. Open the frontend:
+   - either open `index.html` directly in a browser, or  
+   - run a local server in the `frontend` folder, for example:
+
+     ```bash
+     python -m http.server 8000
+     ```
+
+     then go to `http://localhost:8000/index.html`.
+3. Go to the **Sign up** page and create a new user account.  
+4. Log in via the **Sign in** page.  
+5. Open the **Dashboard** to view summary information.  
+6. Go to the **Prediction** page.  
+7. Enter the clinical and lifestyle details for a test case.  
+8. Submit the form and review the stroke risk prediction returned by the model.  
+
+You can repeat steps 6–8 with different inputs to explore the model’s behaviour.
+
+## Data and model
+
+- Stroke-related data is stored in `dataset.csv` and `preprocessed_data.csv`.  
+- Pre-processing (cleaning, encoding, feature selection) is handled in `preprocess.py` and related controller logic.  
+- The trained machine learning model is loaded in `model.py` and used by the prediction endpoint.  
+- Model performance, including metrics such as accuracy, precision, recall and ROC AUC, is summarised in `model_metrics.txt`.  
+
+Further details about the dataset and modelling choices are provided in the COM7033 written report.
+
+## Security and privacy
+
+This project demonstrates secure software development practices:
+
+- Passwords are hashed before being stored in the database (no plain-text storage).  
+- Authentication uses **JWT tokens** to protect API endpoints and pages.  
+- Sensitive configuration (database URLs, secret keys) is stored in **environment variables**, not hard coded in source files.  
+- Input is validated before reaching the database to reduce injection risks.  
+- Only authenticated users can access the dashboard and prediction endpoints.  
+- Logging is used to record important events such as failed logins and server errors.  
+
+These points can be mapped to STRIDE and the OWASP Top Ten in the accompanying report.
+
+## Testing
+
+Current and planned testing includes:
+
+- Manual testing of key flows (signup, signin, dashboard, prediction).  
+- Unit tests for core functions such as preprocessing and model loading.  
+- Tests for authentication logic and protected routes.  
+- Tests for the prediction endpoint to confirm that valid inputs return a response and invalid inputs are handled safely.  
+
+Once automated tests are added, they can be run with:
+
+```bash
+pytest
+
 
