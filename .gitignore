@@ -1,4 +1,38 @@
-.env
-senv/
+# macOS
+.DS_Store
+
+# Python
 __pycache__/
-stroke_model.pkl
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+.senv/
+senv/
+backend/senv/
+
+# IDE / editor
+.vscode/
+.idea/
+*.code-workspace
+
+# Environment files
+.env
+.env.*
+backend/.env
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node / frontend (future-proof)
+node_modules/
+frontend/node_modules/

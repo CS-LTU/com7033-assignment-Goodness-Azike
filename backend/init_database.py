@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from database.connection import db, engine
+from database.mySql_connection import db, engine
 from sqlalchemy import text
 
 def init_database():
