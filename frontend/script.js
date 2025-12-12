@@ -279,7 +279,8 @@ function initializeFormSubmissions() {
         forgotPasswordForm.addEventListener('submit', handleForgotPassword);
     }
 }
-
+// Signup: send only the minimum data needed to the backend.
+// Passwords are not stored in localStorage or logs on the client side.
 async function handleSignup(e) {
     e.preventDefault();
     
