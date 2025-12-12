@@ -4,7 +4,7 @@ from typing import Optional
 import pandas as pd
 import numpy as np
 import os
-import pickle
+import joblib
 from .preprocess import preprocess_data
 from .jwt_auth import verify_token
 from .stroke_data_service import save_stroke_prediction
@@ -31,13 +31,14 @@ class StrokePredictionResponse(BaseModel):
     message: str
 
 def load_model():
-    """Load the trained model"""
+    """Load the trained model with joblib (same as train_model.py)"""
     backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     model_path = os.path.join(backend_dir, 'stroke_model.pkl')
+
     if not os.path.exists(model_path):
         raise FileNotFoundError("Model file not found. Please train the model first.")
-    with open(model_path, 'rb') as f:
-        model = pickle.load(f)
+
+    model = joblib.load(model_path)
     return model
 
 @api.post('/predict', response_model=StrokePredictionResponse)
