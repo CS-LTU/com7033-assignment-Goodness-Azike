@@ -56,7 +56,7 @@ The project belongs to the **Secure Software Development** module (COM7033) for 
 ## Screenshots
 
 ### Stroke Risk Assessment Interface
-![Stroke Risk Assessment](screenshots/stroke-assessment.png)
+![Stroke Risk Assessment](screenshots/prediction_image.png)
 
 The application features:
 - **Clean, intuitive form** for entering patient health data
@@ -667,11 +667,10 @@ I used OpenAI ChatGPT (GPT-4) as a coding and writing assistant during this proj
 
 - Refine frontend JavaScript for validation, notifications and usability
 - Improve the clarity of comments, documentation and user-facing text
-- Debug issues with JWT authentication and role-based access control
-
+- Debug issues 
 **All generated code and text were reviewed, adapted, and tested by me before inclusion.**
 
-I remain responsible for the final design, implementation, and academic integrity of this submission.
+I remain responsible for the final design, the coding process, implementation, and academic integrity of this submission.
 
 ---
 
@@ -682,7 +681,7 @@ I remain responsible for the final design, implementation, and academic integrit
 **Goodness Azike**  
 MSc Data Science and Artificial Intelligence  
 Leeds Trinity University  
-Student ID: XXXXXXXX
+Student ID: 2409960
 
 ### Acknowledgements
 
